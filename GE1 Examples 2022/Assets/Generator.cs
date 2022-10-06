@@ -1,10 +1,11 @@
-﻿using System.Collections;
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public int loops = 6;
+    public int loops = 10;
     public GameObject prefab;
     // Start is called before the first frame update
     void Start()
@@ -12,11 +13,16 @@ public class Generator : MonoBehaviour
         int radius = 1;
         for (int k=0;k<loops;k++)
         {
+            int newradius = radius + k;
             int prefabno = (int)(2 * Mathf.PI * radius * k);
             float theta = 2.0f*Mathf.PI/(float)prefabno;
+
             for (int i=0;i<prefabno;i++)
             {
-                Instantiate(prefab, new Vector3(Mathf.Sin(k*radius), Mathf.Cos(k*radius), 0), Quaternion.identity);
+                float angle = theta*i;
+                float xvalue = Mathf.Cos(angle) * newradius;
+                float yvalue = Mathf.Sin(angle) * newradius;
+                Instantiate(prefab, new Vector3(xvalue, yvalue, 0), Quaternion.identity);
             }
         }
         
