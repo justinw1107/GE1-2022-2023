@@ -1,21 +1,23 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public Transform head;
-
-public Transform tail;
-
-public float frequency;
-
-public int headAmplitude;
-
-public int tailAmplitude;
-
-public float theta;
-
 public class Snake : MonoBehaviour
 {
+    public Transform head;
+
+    public Transform tail;
+    [Range(0, 5)]
+
+    public float frequency = 0.5f;
+
+    public int headAmplitude = 40;
+
+    public int tailAmplitude = 60;
+
+    public float theta;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,13 @@ public class Snake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        theta = Time.time * frequency;
+
+        float headAngle = headAmplitude * Mathf.Sin(theta);
+        float tailAngle = tailAmplitude * Mathf.Sin(theta);
+
+        head.localRotation = Quaternion.AngleAxis(headAngle, Vector3.forward);
+        tail.localRotation = Quaternion.AngleAxis(tailAngle, Vector3.forward);
+
     }
 }
