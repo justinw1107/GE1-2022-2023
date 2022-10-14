@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +22,16 @@ public class AITank : MonoBehaviour {
             // You can draw gizmos using
             // Gizmos.color = Color.green;
             // Gizmos.DrawWireSphere(pos, 1);
+
+            float theta = (Mathf.PI * 2.0f) / numWaypoints;
+            for (int i = 0; i < numWaypoints; i++)
+            {
+                float theta2 = i * theta;
+                Vector3 pos = new Vector3(Mathf.Sin(theta2) * radius, 0, Mathf.Cos(theta2) * radius);
+                pos = transform.TransformPoint(pos);
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(pos, 1);
+            }
         }
     }
 
@@ -40,7 +50,7 @@ public class AITank : MonoBehaviour {
 
 
         // Task 4
-        // Put code here to check if the player is in front of or behine the tank
+        // Put code here to check if the player is in front of or behindd the tank
         // Task 5
         // Put code here to calculate if the player is inside the field of view and in range
         // You can print stuff to the screen using:
